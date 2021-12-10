@@ -1,0 +1,11 @@
+            <div class="list-box" onclick="document.getElementById('_form').submit();">
+                <img class="chat-head" src="img/thread.png" alt="">
+                <div class="chat-rig">
+                    <form id="_form" method="post" action="/chatroomThread?page=(the post id)">
+                      <input type="hidden" name="post_id" value="(the post id)" />
+                      <input hidden name="page_token" value="(pageToken)">
+                      <a>title-content</a>
+                    </form>
+                    <p class="text">sender-content</p>
+                </div>
+            </div>

@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Discussion forum</title>
+    <link rel="stylesheet" href="css/chatroom.css">
+</head>
+<body>
+<style>
+    .post{
+  zoom: 1;
+  padding: 6px 20px;
+  margin: 0;
+  cursor: pointer;
+  border: 1px solid #bbb;
+  overflow: visible;
+  font: bold 13px arial, helvetica, sans-serif;
+  text-decoration: none;
+  white-space: nowrap;
+  color: #555;
+
+  background-color: #ddd;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(255,255,255,1)), to(rgba(255,255,255,0)));
+  background-image: -webkit-linear-gradient(top, rgba(255,255,255,1), rgba(255,255,255,0));
+  background-image: -moz-linear-gradient(top, rgba(255,255,255,1), rgba(255,255,255,0));
+  background-image: -ms-linear-gradient(top, rgba(255,255,255,1), rgba(255,255,255,0));
+  background-image: -o-linear-gradient(top, rgba(255,255,255,1), rgba(255,255,255,0));
+  background-image: linear-gradient(top, rgba(255,255,255,1), rgba(255,255,255,0));
+
+  -webkit-transition: background-color .2s ease-out;
+  -moz-transition: background-color .2s ease-out;
+  -ms-transition: background-color .2s ease-out;
+  -o-transition: background-color .2s ease-out;
+  transition: background-color .2s ease-out;
+  background-clip: padding-box; /* Fix bleeding */
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  -moz-box-shadow: 0 1px 0 rgba(0, 0, 0, .3), 0 2px 2px -1px rgba(0, 0, 0, .5), 0 1px 0 rgba(255, 255, 255, .3) inset;
+  -webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, .3), 0 2px 2px -1px rgba(0, 0, 0, .5), 0 1px 0 rgba(255, 255, 255, .3) inset;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, .3), 0 2px 2px -1px rgba(0, 0, 0, .5), 0 1px 0 rgba(255, 255, 255, .3) inset;
+  text-shadow: 0 1px 0 rgba(255,255,255, .9);
+
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+</style>
+<script>
+    localStorage.setItem("page_token", "(pageToken)");
+    function c(id)
+    {
+        var text = document.getElementById(id).value.trim()
+        let val = document.createElement("input")
+        val.setAttribute("name","page_token")
+        val.setAttribute("value",localStorage.getItem("page_token"))
+        document.getElementById(id).appendChild(val)
+
+        if(text.length < 3)
+        {
+            window.alert ("This field cant less than three character");
+            return true;
+        }
+        else
+        {
+            document.getElementById('put_reply').submit();
+            return false;
+        }
+    }
+    function mid(id)
+    {
+        let val = document.createElement("input")
+        val.setAttribute("name","page_token")
+        val.setAttribute("value",localStorage.getItem("page_token"))
+        document.getElementById(id).appendChild(val)
+        document.getElementById(id).submit();
+    }
+
+
+
+</script>
+<div class="main">
+    <div class="top">
+        <div class="top-left">
+
+            <div class="post"onclick="location.href='/chatroom';">
+                CREATE NEW POST
+            </div>
+
+            <div class="search">
+                <form id="leave" method="post" action="/homeChat">
+                    <input onclick="mid('leave');" value="leave" style="text-align: left;margin-left: 780px"/>
+                    <a name="page_token" value="(pageToken)"></a>
+                </form>
+
+            </div>
+        </div>
+        <div class="top-type">
+
+        </div>
+        <div class="top-right">
+
+        </div>
+    </div>
+    <div class="box">
+
+<!--?        the list of discussion forum-->
+        <div class="chat-list" id="discussion_form">
+
+<!--?            the rig which currently not been selected-->
+            <div class="list-box">
+                ("the place to put in thread list")
+            </div>
+
+
+
+
+
+        </div>
+
+
+
+        <div class="box-right">
+            <div class="recvfrom">
+                <div class="nav-top">
+                    <p style="margin-left: 300px">("thread title")</p>
+                </div>
+<!--?                chatting history-->
+                <div class="news-top">
+<!--?                    add message in this <ul>-->
+                    <ul id="messageList">
+                        ("the place to put in chatting list")
+                    </ul>
+                </div>
+            </div>
+            <div class="sendto">
+                <div class="but-nav">
+                    <ul>
+                    </ul>
+                </div>
+
+                <div class="but-text">
+
+                    <form id="put_reply" method="post" action="/chatroom_reply">
+                        <textarea name="reply_msg" id="text_area" cols="110" rows="6"></textarea>
+                        <a class="button" onclick="c('text_area')">post</a>
+                    </form>
+
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+</div>
+
+</body>
+</html>
